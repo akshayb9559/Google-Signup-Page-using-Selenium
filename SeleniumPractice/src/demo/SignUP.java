@@ -24,33 +24,38 @@ public class SignUP {
 
 	@Test
 	public void test() {
-		wd.findElement(By.id("firstName")).sendKeys("Akshay");
-		wd.findElement(By.id("lastName")).sendKeys("Bramhane");
-		
-//		wd.findElement(By.id("username")).sendKeys("ab12345");
-//		wd.findElement(By.id("username")).clear();
-//		String nameText = wd.findElement(By.id("username")).getAttribute("data-username");
-//		wd.findElement(By.id("username")).sendKeys(nameText);
-//		System.out.println(nameText);
-		
-		WebElement firstname=wd.findElement(By.id("username")); 
-		firstname.sendKeys("akshayb95123456");
-//		firstname.clear();
-//		String name=firstname.getAttribute("data-username"); 
-//		System.out.println("First Name : "+name);
-		
-		
+		//Checking TextField with valid Values for First Name
+		WebElement firstN = wd.findElement(By.id("firstName"));
+		firstN.sendKeys("Akshay");
+		String fname = firstN.getAttribute("value");
+		System.out.println("First Name :- " + fname);
 
-		wd.findElement(By.xpath("//*[@id=\"passwd\"]/div[1]/div/div[1]/input")).sendKeys("Akshay@b98765");
+		//Checking TextField with valid Values for Last Name
+		WebElement lastN = wd.findElement(By.id("lastName"));
+		lastN.sendKeys("Bramhane");
+		String lname1 = lastN.getAttribute("value");
+		System.out.println("Last Name :- " + lname1);
+
+		//Checking TextField with valid Values for UserName
+		WebElement userN = wd.findElement(By.id("username"));
+		userN.sendKeys("akshaybramhane19");
+		String user = userN.getAttribute("value");
+		System.out.println("User Name :- " + user);
+
+		//Checking TextField with valid Values for Password
+		WebElement password = wd.findElement(By.name("Passwd"));
+		password.sendKeys("Akshay@b98765");
+		String pass = password.getAttribute("value");
+		System.out.println("Password :- " + pass);
+
+		//Checking TextField with valid Values for Confirm Password
+		WebElement confirmPassword = wd.findElement(By.name("ConfirmPasswd"));
+		confirmPassword.sendKeys("Akshay@b98765");
+		String cPass = confirmPassword.getAttribute("value");
+		System.out.println("Confirm Password :- " + cPass);
 		
-		wd.findElement(By.xpath("//*[@id=\"confirm-passwd\"]/div[1]/div/div[1]/input")).sendKeys("Akshay@b98765");
-//		if(wd.findElement(By.xpath("//*[@id=\\\"view_container\\\"]/form/div[2]/div/div[1]/div[2]/div[3]/div")).getText()=="Available"){
-//			wd.findElement(By.id("yDmH0d")).click();
-//		}
-//		wd.findElement(By.xpath("//*[@id=\"confirm-passwd\"]/div[1]/div/div[1]/input")).sendKeys("ab12345");
-		
-		wd.findElement(By.xpath("//*[@id=\"accountDetailsNext\"]/span")).click();
-		
+		//clicking on Next Button
+		wd.findElement(By.xpath("//*[@id=\"accountDetailsNext\"]/span/span")).click();
 	}
 	
 	@After
