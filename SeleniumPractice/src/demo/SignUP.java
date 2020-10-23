@@ -1,8 +1,7 @@
 package demo;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -13,17 +12,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class SignUP {
 
 	WebDriver wd;
-	String url="https://accounts.google.com/signup";
-	
+	String url = "https://accounts.google.com/signup";
+
 	@Before
 	public void setUp() throws Exception {
 		System.setProperty("webdriver.chrome.driver", "D:\\Certification Data\\Selenium\\Driver\\chromedriver.exe");
-		wd=new ChromeDriver();
+		wd = new ChromeDriver();
 		wd.get(url);
 	}
 
 	@Test
-	public void test() {
+	public void test() throws InterruptedException {
+
 		//Checking TextField with valid Values for First Name
 		WebElement firstN = wd.findElement(By.id("firstName"));
 		firstN.sendKeys("Akshay");
@@ -56,11 +56,17 @@ public class SignUP {
 		
 		//clicking on Next Button
 		wd.findElement(By.xpath("//*[@id=\"accountDetailsNext\"]/span/span")).click();
+		
+		Thread.sleep(2000);
+		
+		String actual= wd.findElement(By.id("headingText")).getText();
+		String expected="Verifying your phone number";
+		Assert.assertTrue(actual.equals(expected));
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
-//		wd.quit();
+		wd.quit();
 	}
 
 }
